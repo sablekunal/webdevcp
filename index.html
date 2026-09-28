@@ -1,682 +1,527 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sportik | Free Tournament Management App for India</title>
   <meta name="description" content="Sportik is India's leading free sports tournament manager. Generate single/double knockout brackets, group stage tables with Cricket NRR, live draws, auto-scheduled fixtures, and instant WhatsApp links."/>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
   
-  <!-- Material Symbols Outlined -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-  <!-- Inter Google Font -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "background": "#f7f9fb",
-            "on-secondary-fixed": "#131b2e",
-            "surface-container-lowest": "#ffffff",
-            "on-error-container": "#93000a",
-            "surface-container-high": "#e6e8ea",
-            "primary-fixed": "#ffdbca",
-            "primary-fixed-dim": "#ffb690",
-            "secondary-fixed-dim": "#bec6e0",
-            "secondary-fixed": "#dae2fd",
-            "surface": "#f7f9fb",
-            "secondary": "#565e74",
-            "on-primary-fixed-variant": "#783200",
-            "on-background": "#191c1e",
-            "outline-variant": "#e0c0b1",
-            "tertiary": "#585e70",
-            "on-surface-variant": "#584237",
-            "surface-dim": "#d8dadc",
-            "on-primary-fixed": "#341100",
-            "surface-tint": "#9d4300",
-            "tertiary-fixed-dim": "#c1c6db",
-            "tertiary-container": "#949aae",
-            "inverse-surface": "#2d3133",
-            "on-surface": "#191c1e",
-            "surface-container-low": "#f2f4f6",
-            "on-tertiary": "#ffffff",
-            "on-tertiary-fixed-variant": "#414658",
-            "inverse-on-surface": "#eff1f3",
-            "error": "#ba1a1a",
-            "tertiary-fixed": "#dde2f8",
-            "outline": "#8c7164",
-            "on-tertiary-container": "#2c3242",
-            "secondary-container": "#dae2fd",
-            "on-error": "#ffffff",
-            "primary-container": "#f97316",
-            "on-primary-container": "#582200",
-            "on-tertiary-fixed": "#151b2b",
-            "surface-variant": "#e0e3e5",
-            "surface-container": "#eceef0",
-            "surface-bright": "#f7f9fb",
-            "on-primary": "#ffffff",
-            "on-secondary-container": "#5c647a",
-            "surface-container-highest": "#e0e3e5",
-            "error-container": "#ffdad6",
-            "on-secondary-fixed-variant": "#3f465c",
-            "primary": "#9d4300",
-            "inverse-primary": "#ffb690"
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          fontFamily: {
-            sans: ["Inter", "sans-serif"]
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    .material-symbols-outlined {
-      font-family: 'Material Symbols Outlined';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 1;
-      display: inline-block;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-    }
-    .custom-card-hover {
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .custom-card-hover:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12);
-      border-color: rgba(249, 115, 22, 0.35);
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css"/>
 </head>
-<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-sans">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-  <!-- ==================== TOP EVENT TICKER ==================== -->
-  <aside class="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 text-white text-xs font-semibold py-2.5 px-4 shadow sticky top-0 z-50">
-    <div class="max-w-[1240px] mx-auto flex flex-wrap items-center justify-between gap-2">
+  <!-- Top Announcement Bar -->
+  <aside class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white text-xs font-semibold py-2 px-4 shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white/20 text-white animate-pulse">Featured Event</span>
-        <span>St. Xavier's Youth Presents • <strong>Rt. Rev. Fr. Thomas Barco Memorial Throwball Cup (6-A-Side Girls)</strong> • Pune</span>
+        <span class="inline-flex items-center justify-center bg-white/20 text-white px-2 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider animate-pulse">Official Event</span>
+        <span class="truncate">St. Xavier's Youth Fr. Barco Memorial Throwball Tournament for Girls (Oct 4, 2026)</span>
       </div>
-      <div class="flex items-center gap-4 text-xs">
-        <span class="hidden md:inline"><i class="material-symbols-outlined text-[14px] align-middle mr-0.5">trophy</i> ₹20,000 Cash Prizes</span>
-        <a href="volleyball/index.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-orange-900 font-bold hover:bg-orange-50 transition shadow-sm">
-          <span>View Tournament Microsite</span>
-          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-        </a>
-      </div>
+      <a href="volleyball/index.html" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white text-blue-700 text-xs font-bold hover:bg-blue-50 transition shadow-sm">
+        <span>View Event & Register</span>
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
     </div>
   </aside>
 
-  <!-- ==================== 1. STICKY HEADER ==================== -->
-  <header class="sticky top-[38px] z-40 w-full bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
-    <div class="flex justify-between items-center w-full px-6 md:px-10 max-w-[1240px] mx-auto h-20">
-      <!-- Brand Logo -->
-      <a class="flex items-center gap-3 active:scale-[0.98] transition-transform duration-150" href="index.html">
-        <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-md">
-          <span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-2xl font-black text-slate-900 tracking-tight">Sportik</span>
-          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-orange-700 bg-orange-100 border border-orange-200 text-[11px] font-bold">
-            Free for India
-          </span>
-        </div>
-      </a>
-
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-        <a class="text-orange-600 font-bold border-b-2 border-orange-500 pb-1" href="#features">Features</a>
-        <a class="text-slate-600 hover:text-orange-600 transition-colors" href="#formats">Formats</a>
-        <a class="text-slate-600 hover:text-orange-600 transition-colors" href="tools.html">Match Tools</a>
-        <a class="text-slate-600 hover:text-orange-600 transition-colors" href="#pricing">Pricing</a>
-        <a class="text-slate-600 hover:text-orange-600 transition-colors" href="volleyball/index.html">Throwball Cup 2026</a>
-        <a class="text-slate-600 hover:text-orange-600 transition-colors" href="contact.html">Contact</a>
-      </nav>
-
-      <!-- Trailing Action Buttons -->
-      <div class="flex items-center gap-3">
-        <a class="hidden sm:inline-flex items-center text-sm text-slate-700 hover:text-slate-950 font-bold px-3 py-2 transition-colors" href="features.html">
-          Features
+  <!-- Navigation Header -->
+  <header class="glass-nav sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined text-2xl">sports_volleyball</span>
+          </div>
+          <span class="font-extrabold text-2xl tracking-tight text-slate-900">Sportik</span>
         </a>
-        <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-container text-white font-bold text-sm shadow-md hover:bg-orange-600 active:scale-[0.98] transition-all" href="volleyball/index.html">
-          <span>Explore Events</span>
-          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+          <a href="index.html" class="hover:text-blue-600 transition-colors">Home</a>
+          <a href="features.html" class="hover:text-blue-600 transition-colors">Features</a>
+          <a href="tools.html" class="hover:text-blue-600 transition-colors">Free Tools</a>
+          <a href="volleyball/index.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-semibold text-xs border border-blue-200 hover:bg-blue-100 transition-colors">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+            Throwball 2026
+          </a>
+          <a href="about.html" class="hover:text-blue-600 transition-colors">About</a>
+          <a href="contact.html" class="hover:text-blue-600 transition-colors">Contact</a>
+        </nav>
+      </div>
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="contact.html" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors">
+          Support
+        </a>
+        <a href="#download" class="px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-all">
+          Get Sportik Free
         </a>
       </div>
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-2">
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Home</a>
+      <a href="features.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Features</a>
+      <a href="tools.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Free Tools</a>
+      <a href="volleyball/index.html" class="block px-3 py-2 rounded-lg text-base font-semibold text-blue-600 bg-blue-50">Throwball 2026 Tournament</a>
+      <a href="about.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">About</a>
+      <a href="contact.html" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Contact</a>
     </div>
   </header>
 
-  <!-- ==================== 2. HERO SECTION ==================== -->
-  <section class="relative bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white overflow-hidden pt-12 pb-24 md:pt-16 md:pb-32">
-    <!-- Background field lines subtle mesh glow -->
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <div class="absolute w-[600px] h-[600px] -top-40 -right-20 rounded-full border-[2px] border-primary-container blur-2xl"></div>
-      <div class="absolute w-[800px] h-[800px] -bottom-40 -left-20 rounded-full border-[1px] border-white/20"></div>
-    </div>
-
-    <div class="relative max-w-[1240px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <!-- Hero Left Column -->
-      <div class="lg:col-span-7 flex flex-col items-start gap-6">
-        <!-- Live Organizer Trust Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/15 border border-orange-500/30 backdrop-blur-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-          </span>
-          <span class="text-xs font-bold text-orange-300 uppercase tracking-wider">
-            🏆 Trusted by 5,000+ Indian Organizers
-          </span>
-        </div>
-
-        <!-- Headline -->
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-          Run your sports tournament without the <span class="text-primary-container">WhatsApp chaos.</span>
-        </h1>
-
-        <!-- Subtext -->
-        <p class="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-          Sportik generates knockout brackets, live draws, auto-scheduled fixtures, and point tables in seconds. Keep players, coaches, and fans updated with a single live link.
-        </p>
-
-        <!-- CTA Cluster -->
-        <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
-          <a class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-primary-container text-white font-bold text-base shadow-xl hover:bg-orange-600 active:scale-[0.98] transition-all" href="volleyball/index.html">
-            <span class="material-symbols-outlined">sports_volleyball</span>
-            <span>View Featured Throwball Cup</span>
-          </a>
-          <a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/30 text-white font-semibold text-base hover:bg-white/10 active:scale-[0.98] transition-all" href="#features">
-            <span class="material-symbols-outlined">play_circle</span>
-            <span>Browse Features</span>
-          </a>
-        </div>
-
-        <!-- Social Proof Micro-Ribbon -->
-        <div class="flex flex-wrap items-center gap-3 text-slate-400 text-xs sm:text-sm pt-2">
-          <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-emerald-400 text-[18px]">verified</span>
-            <span>Zero ads</span>
-          </div>
-          <span>•</span>
-          <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-emerald-400 text-[18px]">credit_card_off</span>
-            <span>No credit card required</span>
-          </div>
-          <span>•</span>
-          <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-emerald-400 text-[18px]">smartphone</span>
-            <span>Works on every mobile</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hero Right Column: High-Fidelity App Bracket Mockup -->
-      <div class="lg:col-span-5 relative flex justify-center">
-        <!-- Ambient glow behind phone -->
-        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary-container to-amber-500 opacity-25 blur-xl"></div>
-        <!-- Mobile Device Frame -->
-        <div class="relative w-full max-w-[360px] bg-[#0B1120] border-2 border-white/15 rounded-[32px] p-4 shadow-2xl overflow-hidden backdrop-blur-xl">
-          <!-- Mobile Speaker Bar -->
-          <div class="w-24 h-1.5 bg-white/20 rounded-full mx-auto mb-4"></div>
-          <!-- App Header Inside Mockup -->
-          <div class="flex justify-between items-center pb-3 border-b border-white/10 mb-3">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-primary-container font-black text-sm">Sportik Live Matchday</span>
-                <span class="px-1.5 py-0.5 rounded text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 font-bold uppercase animate-pulse">LIVE</span>
-              </div>
-              <p class="text-[11px] text-slate-400">Fr. Barco Throwball Cup 2026</p>
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-gradient-to-b from-blue-50/50 via-slate-50 to-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Hero Copy -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold">
+              <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+              Free Tournament Manager for Grassroots Sports
             </div>
-            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80">
-              <span class="material-symbols-outlined text-[18px]">share</span>
+            
+            <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+              Run your sports tournament without the <span class="text-blue-600">WhatsApp chaos.</span>
+            </h1>
+            
+            <p class="text-lg text-slate-600 leading-relaxed max-w-xl">
+              Knockout brackets, round-robin points tables with Cricket NRR, automated conflict-free fixtures, and live team draws. Share a single real-time link — zero app installs or signups required for players.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+              <a href="features.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-base shadow-xl shadow-blue-500/25 hover:-translate-y-0.5 transition-all">
+                <span class="material-symbols-outlined text-xl">sports_score</span>
+                Explore Features
+              </a>
+              <a href="tools.html" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-700 font-bold text-base border border-slate-200 shadow-sm transition-all">
+                <span class="material-symbols-outlined text-xl">construction</span>
+                Free Matchday Tools
+              </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-200/80 max-w-lg">
+              <div>
+                <div class="text-2xl sm:text-3xl font-black text-slate-900">3,000+</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tournaments</div>
+              </div>
+              <div>
+                <div class="text-2xl sm:text-3xl font-black text-slate-900">45,000+</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Matches Run</div>
+              </div>
+              <div>
+                <div class="text-2xl sm:text-3xl font-black text-blue-600">100% Free</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">To Organize</div>
+              </div>
             </div>
           </div>
-          <!-- Tournament Bracket Node (Semi-Final) -->
-          <div class="space-y-3">
-            <div class="bg-[#1E293B]/90 rounded-xl p-3 border border-white/10 relative">
-              <div class="flex justify-between items-center text-[11px] text-slate-400 mb-2">
-                <span>Semi-Final 1 • Court 1</span>
-                <span class="text-primary-container font-bold">MATCH POINT</span>
-              </div>
-              <!-- Team 1 -->
-              <div class="flex justify-between items-center py-1.5 px-2 rounded-lg bg-[#0F172A] border border-white/5 mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-full bg-orange-500/30 text-orange-400 flex items-center justify-center font-bold text-[10px]">SXW</div>
-                  <span class="text-xs font-bold text-white">St. Xavier's Warriors</span>
+
+          <!-- Hero Visual Card -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl shadow-blue-500/5 relative">
+              <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
+                    <span class="material-symbols-outlined text-base">emoji_events</span>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-bold text-slate-900">Pune Open Cup 2026</h3>
+                    <span class="text-[11px] text-slate-500">Semi-Finals • Live Updates</span>
+                  </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-bold text-white text-xs">15</span>
-                  <span class="text-[10px] text-slate-400">(Set 1)</span>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[11px] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  LIVE
+                </span>
+              </div>
+
+              <!-- Bracket Match 1 -->
+              <div class="space-y-3 mb-6">
+                <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Semi-Final 1 • Ground 1</div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-bold text-sm text-slate-800">Thunder Strikers</span>
+                    <span class="font-mono font-black text-sm bg-blue-600 text-white px-2 py-0.5 rounded-md">2</span>
+                  </div>
+                  <div class="flex justify-between items-center text-slate-500 text-sm">
+                    <span>Pune Titans</span>
+                    <span class="font-mono font-medium px-2 py-0.5">1</span>
+                  </div>
+                </div>
+
+                <!-- Bracket Match 2 -->
+                <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Semi-Final 2 • Ground 2</div>
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-bold text-sm text-slate-800">Deccan Warriors</span>
+                    <span class="font-mono font-black text-sm bg-blue-600 text-white px-2 py-0.5 rounded-md">3</span>
+                  </div>
+                  <div class="flex justify-between items-center text-slate-500 text-sm">
+                    <span>Falcon Kings</span>
+                    <span class="font-mono font-medium px-2 py-0.5">0</span>
+                  </div>
                 </div>
               </div>
-              <!-- Team 2 -->
-              <div class="flex justify-between items-center py-1.5 px-2 rounded-lg bg-primary-container/10 border border-primary-container/40">
-                <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-full bg-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-[10px]">SVT</div>
-                  <span class="text-xs font-bold text-white">St. Vincent's Titans</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-bold text-primary-container text-xs">14</span>
-                  <span class="text-[10px] text-slate-400">(Set 1)</span>
-                </div>
+
+              <div class="bg-blue-50/70 p-3.5 rounded-2xl border border-blue-100 flex items-center justify-between text-xs">
+                <span class="font-semibold text-blue-900">Grand Final: Thunder Strikers vs Deccan Warriors</span>
+                <span class="font-mono font-bold text-blue-700">04:30 PM</span>
               </div>
-              <div class="mt-2 text-center text-[10px] font-semibold text-emerald-400">
-                ⚡ Winner advances directly to Grand Final (₹12k Prize)
-              </div>
-            </div>
-            <!-- Auto-bracket Connecting Lines -->
-            <div class="flex justify-center items-center py-1 text-slate-500">
-              <span class="material-symbols-outlined text-[18px]">south</span>
-            </div>
-            <!-- Grand Final Slot -->
-            <div class="bg-[#1E293B]/60 rounded-xl p-2.5 border border-dashed border-white/20">
-              <div class="flex justify-between items-center text-[11px] text-slate-400 mb-1.5">
-                <span>Grand Final • 4:00 PM</span>
-                <span class="material-symbols-outlined text-amber-400 text-[16px]">trophy</span>
-              </div>
-              <div class="flex items-center justify-between text-xs text-white/80 px-2 py-1 bg-[#0F172A]/70 rounded">
-                <span class="italic text-slate-400">Winner SF 1</span>
-                <span class="text-slate-500 font-bold">VS</span>
-                <span class="font-semibold text-white">Winner SF 2</span>
-              </div>
-            </div>
-            <!-- Public Link Sync Bar -->
-            <div class="rounded-xl bg-white/5 p-2 flex items-center justify-between border border-white/10 mt-2">
-              <div class="flex items-center gap-2 overflow-hidden">
-                <span class="material-symbols-outlined text-emerald-400 text-[16px]">link</span>
-                <span class="text-[11px] text-slate-300 truncate">sportik.in/volleyball</span>
-              </div>
-              <a href="volleyball/index.html" class="text-[10px] text-primary-container font-bold hover:underline shrink-0">Open →</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==================== 3. STATS TELEMETRY BAR ==================== -->
-  <section class="relative -mt-10 z-20 max-w-[1240px] mx-auto px-6 md:px-10">
-    <div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
-      <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
-          <span class="material-symbols-outlined">emoji_events</span>
-        </div>
-        <div>
-          <div class="text-2xl font-black text-slate-900">5,000+</div>
-          <div class="text-xs font-semibold text-slate-500">Tournaments Hosted</div>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-4 border-l-0 md:border-l border-slate-200 md:pl-6">
-        <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
-          <span class="material-symbols-outlined">sports_kabaddi</span>
-        </div>
-        <div>
-          <div class="text-2xl font-black text-slate-900">50+ Sports</div>
-          <div class="text-xs font-semibold text-slate-500">Throwball, Cricket, Football</div>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-4 border-l-0 md:border-l border-slate-200 md:pl-6">
-        <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
-          <span class="material-symbols-outlined">verified</span>
-        </div>
-        <div>
-          <div class="text-2xl font-black text-slate-900">100% Free</div>
-          <div class="text-xs font-semibold text-slate-500">₹0 Platform Fee forever</div>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-4 border-l-0 md:border-l border-slate-200 md:pl-6">
-        <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-          <span class="material-symbols-outlined">groups</span>
-        </div>
-        <div>
-          <div class="text-2xl font-black text-slate-900">250K+</div>
-          <div class="text-xs font-semibold text-slate-500">Players Connected</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 4. FEATURED EVENT SHOWCASE ==================== -->
-  <section class="py-16 max-w-[1240px] mx-auto px-6 md:px-10">
-    <div class="rounded-3xl bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0A1120] text-white p-8 md:p-12 border border-orange-500/30 shadow-2xl relative overflow-hidden">
-      <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-        <div class="lg:col-span-8 space-y-4">
-          <div class="flex flex-wrap items-center gap-3">
-            <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-orange-500 text-white">
-              Official Tournament Spotlight
-            </span>
-            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-slate-300 border border-white/10">
-              Sunday, 04 October 2026 • Pune Camp
-            </span>
+    <!-- Spotlight Banner for Throwball Event -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-16 relative z-10">
+      <div class="rounded-3xl bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white p-8 sm:p-10 shadow-xl shadow-blue-600/15 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold uppercase tracking-wider">
+            <span class="material-symbols-outlined text-sm">verified</span>
+            Dedicated Event Microsite
           </div>
-
-          <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
             Rt. Rev. Fr. Thomas Barco, SJ Memorial Throwball Tournament for Girls
           </h2>
-
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-            St. Xavier's Youth presents the premier 6-a-side girls throwball championship. 16 teams battle across 4 groups (Single Round Robin) for 4 knockout spots and ₹20,000 in cash awards.
+          <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+            Presented by St. Xavier's Youth • 6-A-Side • 16 Teams • 4 Groups • 27 Matches • ₹20,000 Cash Prizes • October 4, 2026 at Barco Hall Ground, Camp, Pune.
           </p>
-
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
-            <div class="bg-white/5 rounded-xl p-3 border border-white/10 text-center">
-              <span class="block text-xl font-black text-amber-400">₹20,000</span>
-              <span class="text-[11px] text-slate-400 font-semibold uppercase">Total Cash Pool</span>
-            </div>
-            <div class="bg-white/5 rounded-xl p-3 border border-white/10 text-center">
-              <span class="block text-xl font-black text-white">16 Teams</span>
-              <span class="text-[11px] text-slate-400 font-semibold uppercase">4 Groups × 4</span>
-            </div>
-            <div class="bg-white/5 rounded-xl p-3 border border-white/10 text-center">
-              <span class="block text-xl font-black text-white">27 Matches</span>
-              <span class="text-[11px] text-slate-400 font-semibold uppercase">24 League + 3 KO</span>
-            </div>
-            <div class="bg-white/5 rounded-xl p-3 border border-white/10 text-center">
-              <span class="block text-xl font-black text-emerald-400">25 Sep 2026</span>
-              <span class="text-[11px] text-slate-400 font-semibold uppercase">Reg Deadline</span>
-            </div>
-          </div>
         </div>
-
-        <div class="lg:col-span-4 flex flex-col gap-3 justify-center items-stretch">
-          <a href="volleyball/index.html" class="w-full py-4 rounded-xl font-black text-sm bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:brightness-110 active:scale-95 transition shadow-xl flex items-center justify-center gap-2">
-            <span class="material-symbols-outlined">open_in_new</span>
-            <span>Enter Event Microsite</span>
-          </a>
-          <a href="volleyball/index.html#bracket" class="w-full py-3.5 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/15 text-slate-200 border border-white/20 transition flex items-center justify-center gap-2">
-            <span class="material-symbols-outlined">account_tree</span>
-            <span>View 16-Team Bracket</span>
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a href="volleyball/index.html" class="px-6 py-3.5 rounded-2xl bg-white text-blue-700 font-extrabold text-sm hover:bg-blue-50 transition shadow-lg flex items-center justify-center gap-2">
+            <span>Explore Event Microsite</span>
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
           </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==================== 5. THE SPORTIK DIFFERENCE ==================== -->
-  <section class="py-16 md:py-24 max-w-[1240px] mx-auto px-6 md:px-10">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <span class="px-3.5 py-1.5 rounded-full bg-orange-100 text-orange-700 border border-orange-200 text-xs font-bold uppercase tracking-wider">
-        Operational Rigor
-      </span>
-      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-4 mb-3">
-        The Sportik Difference
-      </h2>
-      <p class="text-slate-600 text-base">
-        Why tournament organizers across India are replacing chaotic spreadsheets and endless WhatsApp threads with Sportik.
-      </p>
-    </div>
+    <!-- The Sportik Difference Section -->
+    <section class="py-16 bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">The Sportik Difference</h2>
+          <p class="text-slate-600 text-sm sm:text-base">Why grassroots organizers across India choose Sportik over spreadsheets.</p>
+        </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Card: Before Sportik -->
-      <div class="bg-red-50/50 rounded-2xl p-8 border border-red-200 shadow-sm relative">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
-            <span class="material-symbols-outlined">cancel</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Without Sportik -->
+          <div class="p-8 rounded-3xl bg-rose-50/50 border border-rose-100 space-y-4">
+            <div class="flex items-center gap-2.5 text-rose-700 font-bold text-base">
+              <span class="material-symbols-outlined text-xl">close</span>
+              Without Sportik
+            </div>
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-rose-500 text-base shrink-0 mt-0.5">remove_circle</span>
+                <span>3 separate Excel spreadsheets that break when match delays happen.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-rose-500 text-base shrink-0 mt-0.5">remove_circle</span>
+                <span>Unruly WhatsApp groups with 40 people arguing over seedings and points.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-rose-500 text-base shrink-0 mt-0.5">remove_circle</span>
+                <span>Handwritten bracket charts taped to a ground fence in the rain.</span>
+              </li>
+            </ul>
           </div>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900">Without Sportik</h3>
-            <p class="text-xs text-slate-500">The chaotic, manual paper trail</p>
+
+          <!-- With Sportik -->
+          <div class="p-8 rounded-3xl bg-blue-50/50 border border-blue-100 space-y-4">
+            <div class="flex items-center gap-2.5 text-blue-700 font-bold text-base">
+              <span class="material-symbols-outlined text-xl">check_circle</span>
+              With Sportik
+            </div>
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-blue-600 text-base shrink-0 mt-0.5">check</span>
+                <span>1 live public link and QR code showing real-time scores and bracket progression.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-blue-600 text-base shrink-0 mt-0.5">check</span>
+                <span>Automated points tables with Net Run Rate, Goal Diff, and tiebreaker logic.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-blue-600 text-base shrink-0 mt-0.5">check</span>
+                <span>Fair live draws with audit history that eliminate captain disputes instantly.</span>
+              </li>
+            </ul>
           </div>
         </div>
-        <ul class="space-y-4 text-sm text-slate-700">
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-red-500 shrink-0 mt-0.5">close</span>
-            <span>WhatsApp chaos with 500+ unread messages asking for match timings and pitch allocations.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-red-500 shrink-0 mt-0.5">close</span>
-            <span>Manual Excel spreadsheets that format awkwardly and break completely on captains' mobile phones.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-red-500 shrink-0 mt-0.5">close</span>
-            <span>Suspicious offline paper draws done behind closed doors, triggering cheating accusations.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-red-500 shrink-0 mt-0.5">close</span>
-            <span>Outdated paper brackets taped to ground noticeboards torn apart by rain and wind.</span>
-          </li>
-        </ul>
       </div>
+    </section>
 
-      <!-- Card: After Sportik -->
-      <div class="bg-white rounded-2xl p-8 border-2 border-orange-500 shadow-xl relative overflow-hidden">
-        <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-orange-500 text-white text-[11px] font-bold uppercase tracking-wider">
-          Recommended
-        </div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-            <span class="material-symbols-outlined">check_circle</span>
+    <!-- Core Features Grid -->
+    <section id="features" class="py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-3">
+            <span class="material-symbols-outlined text-base">apps</span>
+            Tournament Capabilities
           </div>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900">With Sportik</h3>
-            <p class="text-xs text-slate-500">Zero-stress digital tournament control</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+            Everything you need on matchday
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base">
+            Engineered for high-stress tournament days. Fast, simple, and 100% reliable.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <a href="features/knockout-brackets.html" class="bg-white rounded-3xl p-8 border border-slate-200 card-hover flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl">account_tree</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                Knockout & Double Elimination
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Single or double knockout brackets with automatic winner progression, balanced byes, and grand finals.
+              </p>
+            </div>
+            <span class="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Learn more →
+            </span>
+          </a>
+
+          <!-- Feature 2 -->
+          <a href="features/group-stage.html" class="bg-white rounded-3xl p-8 border border-slate-200 card-hover flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl">table_rows</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                Group Stages + Points Table
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Round-robin league tables with auto-calculated Net Run Rate (Cricket) or Goal Difference (Football/Hockey).
+              </p>
+            </div>
+            <span class="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Learn more →
+            </span>
+          </a>
+
+          <!-- Feature 3 -->
+          <a href="features/live-draw.html" class="bg-white rounded-3xl p-8 border border-slate-200 card-hover flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl">casino</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                Live Team Draw
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Conduct fair team draws live in front of captains with random spin or manual seeding and full audit history.
+              </p>
+            </div>
+            <span class="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Learn more →
+            </span>
+          </a>
+
+          <!-- Feature 4 -->
+          <a href="features/fixture-scheduler.html" class="bg-white rounded-3xl p-8 border border-slate-200 card-hover flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl">calendar_month</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                Auto & Manual Scheduler
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Generate entire fixture lists in one click with rest-period protection and court/ground allocations.
+              </p>
+            </div>
+            <span class="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Learn more →
+            </span>
+          </a>
+
+          <!-- Feature 5 -->
+          <a href="features/share-tournament.html" class="bg-white rounded-3xl p-8 border border-slate-200 card-hover flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl">qr_code_2</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                Instant Sharing & QR Codes
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Public read-only URLs and printable QR codes for players, parents, and spectators to follow along.
+              </p>
+            </div>
+            <span class="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              Learn more →
+            </span>
+          </a>
+
+          <!-- Feature 6 -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50/50 rounded-3xl p-8 border border-blue-200/80 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-blue-700 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/20">
+                <span class="material-symbols-outlined text-2xl">workspace_premium</span>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full mb-2 inline-block">100% Free Guarantee</span>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">
+                Built For Organizers
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Zero premium paywalls for core tournament features. Designed for sports lovers running tournaments on weekends.
+              </p>
+            </div>
+            <a href="about.html" class="text-sm font-bold text-blue-700 hover:underline">
+              Read our mission →
+            </a>
           </div>
         </div>
-        <ul class="space-y-4 text-sm text-slate-800">
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-600 shrink-0 mt-0.5">check</span>
-            <span>One smart live link with real-time score updates broadcasted directly across WhatsApp groups.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-600 shrink-0 mt-0.5">check</span>
-            <span>Automated fixture generation with conflict-free court, pitch, and referee time-slot scheduling.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-600 shrink-0 mt-0.5">check</span>
-            <span>Transparent live team draw wheel spun digitally in front of all captains for 100% fair play.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-emerald-600 shrink-0 mt-0.5">check</span>
-            <span>Auto-updating interactive bracket tree view accessible in one tap by every fan, parent, and player.</span>
-          </li>
-        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==================== 6. FEATURES GRID ==================== -->
-  <section class="py-16 md:py-24 bg-slate-50 border-y border-slate-200" id="features">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="px-3.5 py-1.5 rounded-full bg-orange-100 text-orange-700 border border-orange-200 text-xs font-bold uppercase tracking-wider">
-          Complete Toolkit
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-4 mb-3">
-          Everything You Need on Matchday
-        </h2>
-        <p class="text-slate-600 text-base">
-          Purpose-built tournament features designed to handle the ground realities of Indian local leagues.
+    <!-- Free Tools Showcase -->
+    <section class="py-20 bg-white border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-3">
+              <span class="material-symbols-outlined text-base">build</span>
+              Matchday Browser Utilities
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Free tools for tournament organizers</h2>
+          </div>
+          <a href="tools.html" class="inline-flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-700">
+            View All Free Tools →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a href="tools/coin-toss.html" class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 card-hover transition group">
+            <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">monetization_on</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">Virtual Coin Toss</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">Fair 3D coin flip with flip counters for matchday captains.</p>
+          </a>
+
+          <a href="tools/picker-wheel.html" class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 card-hover transition group">
+            <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">donut_large</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">Picker Wheel</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">Spinning wheel to randomly decide batting orders or raffle winners.</p>
+          </a>
+
+          <a href="tools/random-team-generator.html" class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 card-hover transition group">
+            <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">groups</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">Team Generator</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">Split player rosters into balanced teams with custom mascots.</p>
+          </a>
+
+          <a href="tools/tournament-budget-calculator.html" class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 card-hover transition group">
+            <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">calculate</span>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">Budget Calculator</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">Calculate entry fees, venue costs, and profit/loss margins.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <h2 class="text-3xl sm:text-5xl font-black tracking-tight">Run your next tournament with Sportik</h2>
+        <p class="text-blue-100 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          Free forever for organizers. No credit card required. Set up brackets, points tables, and live fixtures in minutes.
         </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="features/knockout-brackets.html" class="block bg-white rounded-2xl p-7 border border-slate-200 custom-card-hover shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-5 shadow">
-            <span class="material-symbols-outlined">account_tree</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Knockout & Double Elimination</h3>
-          <p class="text-sm text-slate-600 mb-4">Single & double elimination brackets, auto-calculated seeds, and bracket trees for up to 128 teams.</p>
-          <span class="text-xs font-bold text-orange-600 flex items-center gap-1">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-        </a>
-
-        <a href="features/group-stage.html" class="block bg-white rounded-2xl p-7 border border-slate-200 custom-card-hover shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-5 shadow">
-            <span class="material-symbols-outlined">leaderboard</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Group Stages + Points Table</h3>
-          <p class="text-sm text-slate-600 mb-4">Round-robin groups with auto-calculated Net Run Rate (NRR), goal difference, and head-to-head tie-breakers.</p>
-          <span class="text-xs font-bold text-orange-600 flex items-center gap-1">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-        </a>
-
-        <a href="features/live-draw.html" class="block bg-white rounded-2xl p-7 border border-slate-200 custom-card-hover shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-5 shadow">
-            <span class="material-symbols-outlined">casino</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Live Team Draw</h3>
-          <p class="text-sm text-slate-600 mb-4">Randomize or seed teams with our live animated wheel so captains can watch the draw unfold fairly.</p>
-          <span class="text-xs font-bold text-orange-600 flex items-center gap-1">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-        </a>
-
-        <a href="features/fixture-scheduler.html" class="block bg-white rounded-2xl p-7 border border-slate-200 custom-card-hover shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-5 shadow">
-            <span class="material-symbols-outlined">calendar_month</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Auto & Manual Scheduler</h3>
-          <p class="text-sm text-slate-600 mb-4">Generate conflict-free schedules across multiple grounds and courts in one click or customize manually.</p>
-          <span class="text-xs font-bold text-orange-600 flex items-center gap-1">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-        </a>
-
-        <a href="features/share-tournament.html" class="block bg-white rounded-2xl p-7 border border-slate-200 custom-card-hover shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-5 shadow">
-            <span class="material-symbols-outlined">share</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">Instant Sharing (No App Needed)</h3>
-          <p class="text-sm text-slate-600 mb-4">A fast mobile URL and QR code that players and spectators can open without signing up or downloading an app.</p>
-          <span class="text-xs font-bold text-orange-600 flex items-center gap-1">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
-        </a>
-
-        <div class="block bg-white/70 rounded-2xl p-7 border-2 border-dashed border-slate-300 relative">
-          <span class="absolute top-5 right-5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold uppercase">Coming Soon</span>
-          <div class="w-12 h-12 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center mb-5">
-            <span class="material-symbols-outlined">payments</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-800 mb-2">Tournament Accounting & UPI</h3>
-          <p class="text-sm text-slate-500 mb-4">Collect team registration fees directly via UPI and monitor tournament expenses and prizes on the fly.</p>
-          <span class="text-xs font-bold text-slate-400">Roadmap 2026</span>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+          <a href="contact.html" class="px-8 py-4 rounded-2xl bg-white text-blue-700 font-extrabold text-base hover:bg-blue-50 transition shadow-lg">
+            Contact Support & Setup
+          </a>
+          <a href="volleyball/index.html" class="px-8 py-4 rounded-2xl bg-blue-900/60 hover:bg-blue-900 text-white font-bold text-base border border-blue-400/30 transition">
+            View Live Throwball Event
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ==================== 7. ORGANIZER MATCHDAY TOOLS ==================== -->
-  <section class="py-16 md:py-24 max-w-[1240px] mx-auto px-6 md:px-10" id="tools">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-      <div>
-        <span class="px-3.5 py-1.5 rounded-full bg-orange-100 text-orange-700 border border-orange-200 text-xs font-bold uppercase tracking-wider">
-          Matchday Utilities
-        </span>
-        <h2 class="text-3xl font-black text-slate-900 mt-3">Free Tools for Match Organizers</h2>
-        <p class="text-slate-600 text-sm mt-1">Instant utilities you can use directly on the ground with zero login.</p>
-      </div>
-      <a href="tools.html" class="inline-flex items-center gap-1 text-sm font-bold text-orange-600 hover:text-orange-700">
-        <span>View All Free Tools</span>
-        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <a href="tools/coin-toss.html" class="block bg-white rounded-2xl p-6 border border-slate-200 custom-card-hover shadow-sm">
-        <div class="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-4 shadow">
-          <span class="material-symbols-outlined">monetization_on</span>
-        </div>
-        <h3 class="font-bold text-base text-slate-900 mb-1">Coin Toss</h3>
-        <p class="text-xs text-slate-500 leading-relaxed">Fair virtual coin flip on your smartphone for the match toss.</p>
-      </a>
-
-      <a href="tools/picker-wheel.html" class="block bg-white rounded-2xl p-6 border border-slate-200 custom-card-hover shadow-sm">
-        <div class="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-4 shadow">
-          <span class="material-symbols-outlined">pie_chart</span>
-        </div>
-        <h3 class="font-bold text-base text-slate-900 mb-1">Picker Wheel</h3>
-        <p class="text-xs text-slate-500 leading-relaxed">Spin a random wheel for live team selection and order draws.</p>
-      </a>
-
-      <a href="tools/tournament-budget-calculator.html" class="block bg-white rounded-2xl p-6 border border-slate-200 custom-card-hover shadow-sm">
-        <div class="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-4 shadow">
-          <span class="material-symbols-outlined">calculate</span>
-        </div>
-        <h3 class="font-bold text-base text-slate-900 mb-1">Budget Planner</h3>
-        <p class="text-xs text-slate-500 leading-relaxed">Weigh team entry collections against pitch, referee, and trophy costs.</p>
-      </a>
-
-      <a href="tools/random-team-generator.html" class="block bg-white rounded-2xl p-6 border border-slate-200 custom-card-hover shadow-sm">
-        <div class="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center mb-4 shadow">
-          <span class="material-symbols-outlined">shuffle</span>
-        </div>
-        <h3 class="font-bold text-base text-slate-900 mb-1">Random Team Generator</h3>
-        <p class="text-xs text-slate-500 leading-relaxed">Instantly split player lists into balanced squads with captains.</p>
-      </a>
-    </div>
-  </section>
-
-  <!-- ==================== 8. FOOTER ==================== -->
-  <footer class="w-full bg-[#0B1120] text-slate-300 border-t border-slate-800 mt-auto">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-16">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
-        <div class="col-span-2 md:col-span-1">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-white">
-              <span class="material-symbols-outlined text-[20px]">emoji_events</span>
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+        <div class="col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+              <span class="material-symbols-outlined text-xl">sports_volleyball</span>
             </div>
-            <span class="text-xl font-black text-white">Sportik</span>
+            <span class="font-bold text-xl text-white">Sportik</span>
           </div>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Empowering grassroots sports organizers across India with modern tournament management software.
+          <p class="text-sm text-slate-400 max-w-sm mb-6 leading-relaxed">
+            Free tournament management for sports organizers. Run brackets, group stages, live draws, and share real-time match results instantly.
           </p>
-          <div class="text-xs text-orange-400 font-bold">
-            <a href="volleyball/index.html" class="hover:underline">⚡ View Throwball Cup 2026</a>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 100% Free Forever
+            </span>
           </div>
         </div>
-
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Product</h4>
-          <ul class="space-y-2.5 text-xs text-slate-400">
-            <li><a class="hover:text-white transition" href="features.html">All Features</a></li>
-            <li><a class="hover:text-white transition" href="features/knockout-brackets.html">Brackets</a></li>
-            <li><a class="hover:text-white transition" href="features/group-stage.html">Group Tables</a></li>
-            <li><a class="hover:text-white transition" href="features/fixture-scheduler.html">Fixture Scheduler</a></li>
+          <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="features.html" class="hover:text-white transition-colors">All Features</a></li>
+            <li><a href="features/knockout-brackets.html" class="hover:text-white transition-colors">Knockout Brackets</a></li>
+            <li><a href="features/group-stage.html" class="hover:text-white transition-colors">Group Stages</a></li>
+            <li><a href="features/live-draw.html" class="hover:text-white transition-colors">Live Team Draw</a></li>
+            <li><a href="features/fixture-scheduler.html" class="hover:text-white transition-colors">Fixture Scheduler</a></li>
+            <li><a href="features/share-tournament.html" class="hover:text-white transition-colors">Live QR Sharing</a></li>
           </ul>
         </div>
-
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Free Tools</h4>
-          <ul class="space-y-2.5 text-xs text-slate-400">
-            <li><a class="hover:text-white transition" href="tools/coin-toss.html">Coin Toss</a></li>
-            <li><a class="hover:text-white transition" href="tools/picker-wheel.html">Picker Wheel</a></li>
-            <li><a class="hover:text-white transition" href="tools/tournament-budget-calculator.html">Budget Planner</a></li>
-            <li><a class="hover:text-white transition" href="tools/random-team-generator.html">Random Team Generator</a></li>
+          <h4 class="text-white font-semibold text-sm mb-4">Free Tools</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="tools/coin-toss.html" class="hover:text-white transition-colors">Virtual Coin Toss</a></li>
+            <li><a href="tools/picker-wheel.html" class="hover:text-white transition-colors">Picker Wheel</a></li>
+            <li><a href="tools/random-team-generator.html" class="hover:text-white transition-colors">Random Team Generator</a></li>
+            <li><a href="tools/tournament-budget-calculator.html" class="hover:text-white transition-colors">Budget Calculator</a></li>
           </ul>
         </div>
-
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Company</h4>
-          <ul class="space-y-2.5 text-xs text-slate-400">
-            <li><a class="hover:text-white transition" href="about.html">About Us</a></li>
-            <li><a class="hover:text-white transition" href="contact.html">Contact Us</a></li>
-            <li><a class="hover:text-white transition" href="privacy.html">Privacy Policy</a></li>
-            <li><a class="hover:text-white transition" href="terms.html">Terms of Service</a></li>
+          <h4 class="text-white font-semibold text-sm mb-4">Events & Company</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="volleyball/index.html" class="text-blue-400 hover:text-blue-300 font-medium transition-colors">Throwball 2026 Event</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors">About Sportik</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact & Support</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
           </ul>
         </div>
       </div>
-
-      <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-        <div>© 2026 Sportik. All rights reserved. Built for champions across India.</div>
-        <div class="flex items-center gap-2 text-slate-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span>All Tournament Servers Operational</span>
-        </div>
+      <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 Sportik Technologies. Made for grassroots sports in India.</p>
+        <p class="flex items-center gap-4">
+          <a href="privacy.html" class="hover:text-slate-400">Privacy</a>
+          <a href="terms.html" class="hover:text-slate-400">Terms</a>
+          <a href="contact.html" class="hover:text-slate-400">hello@sportik.in</a>
+        </p>
       </div>
     </div>
   </footer>
-
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
