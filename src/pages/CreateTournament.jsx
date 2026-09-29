@@ -36,7 +36,7 @@ export default function CreateTournament() {
       navigate(`/t/${docRef.id}`);
     } catch (error) {
       console.error("Error creating tournament: ", error);
-      alert("Failed to create tournament. Please try again.");
+      alert("Failed to create tournament: " + error.message);
       setIsSubmitting(false);
     }
   };
