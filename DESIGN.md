@@ -1,8 +1,8 @@
-# Design System: Sportik Tournament Operating System
+# Design System: SportIQ Tournament Operating System
 **Project ID:** `projects/6272990501520824297`
 
 ## 1. Visual Theme & Atmosphere
-Sportik embodies an **airy, athletic, high-clarity SaaS aesthetic** tailored specifically for sports tournament organizers, players, and matchday spectators in India. 
+SportIQ embodies an **airy, athletic, high-clarity SaaS aesthetic** tailored specifically for sports tournament organizers, players, and matchday spectators in India. 
 The visual language moves away from dark, heavy interfaces into a **clean, daylight-fresh stadium palette** dominated by crisp whites, cool slate neutrals, and vibrant Royal Blue accents. The experience feels fast, authoritative, and frictionless on both mobile devices at the ground and desktops in the organizing office.
 
 - **Mood:** Energetic, trustworthy, modern, and uncluttered.
@@ -15,7 +15,7 @@ The visual language moves away from dark, heavy interfaces into a **clean, dayli
 
 | Natural Language Descriptive Name | Hex Code | Functional Role |
 |---|---|---|
-| **Sportik Royal Blue** | `#004de6` (`#2563eb`) | Primary brand action color: primary CTA buttons, active navigation states, key metric figures, and brand logo mark. |
+| **SportIQ Royal Blue** | `#004de6` (`#2563eb`) | Primary brand action color: primary CTA buttons, active navigation states, key metric figures, and brand logo mark. |
 | **Deep Royal Hover** | `#003bb3` (`#1d4ed8`) | Hover and active pressed states for primary buttons and interactive links. |
 | **Electric Sky Tint** | `#eff6ff` / `#dbeafe` | Light blue surface tint for active tabs, category badges, informational callouts, and hover states. |
 | **Deep Navy Slate** | `#0f172a` | Primary typography for H1-H3 titles, modal headers, and the high-contrast dark footer. |
@@ -52,7 +52,7 @@ The visual language moves away from dark, heavy interfaces into a **clean, dayli
 ### Header Navigation
 - **Height & Layout:** Fixed `64px` height (`h-16`) on desktop, sticky at the top of the viewport (`sticky top-0 z-50`).
 - **Surface:** Glassmorphic translucent white (`bg-white/90 backdrop-blur-md border-b border-slate-200`).
-- **Logo:** `40px x 40px` rounded royal blue square (`rounded-xl bg-blue-600`) with white sports icon, flanked by bold `Sportik` logotype (`font-extrabold text-2xl tracking-tight text-slate-900`).
+- **Logo:** `40px x 40px` rounded royal blue square (`rounded-xl bg-blue-600`) with white sports icon, flanked by bold `SportIQ` logotype (`font-extrabold text-2xl tracking-tight text-slate-900`).
 - **Links:** Clean `text-slate-600 hover:text-blue-600 font-medium text-sm transition-colors`. Active links highlighted in bold royal blue.
 - **Special Event Pill:** Subtle blue/indigo badge (`bg-blue-50 text-blue-700 border border-blue-200 rounded-full text-xs font-semibold`) with pulsing live dot.
 - **Primary CTA:** Royal Blue button (`bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-blue-500/20`).
@@ -61,10 +61,10 @@ The visual language moves away from dark, heavy interfaces into a **clean, dayli
 - **Theme:** High-contrast Charcoal-Navy (`bg-slate-900 text-slate-400 border-t border-slate-800`).
 - **Grid Layout:** 5-column responsive layout (Brand blurb + Product + Free Tools + Events & Company + Legal/Contact).
 - **Typography:** Crisp white category headers (`text-white font-semibold text-sm mb-4`), slate-400 links transitioning to white on hover.
-- **Bottom Bar:** Divider border with copyright notice and direct support email (`hello@sportik.in`).
+- **Bottom Bar:** Divider border with copyright notice and direct support email (`hello@sportiq.in`).
 
 ### Buttons
-- **Primary Action:** Generously rounded pill or square (`rounded-xl` or `rounded-2xl`), solid Sportik Royal Blue (`#004de6`), white bold text, elevated with `shadow-md shadow-blue-500/20`. On hover, scale or darken to `#003bb3`.
+- **Primary Action:** Generously rounded pill or square (`rounded-xl` or `rounded-2xl`), solid SportIQ Royal Blue (`#004de6`), white bold text, elevated with `shadow-md shadow-blue-500/20`. On hover, scale or darken to `#003bb3`.
 - **Secondary / Ghost Action:** Subtle Slate container (`bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl`).
 - **Special Highlight (Trophy / Event):** Amber Gold pill (`bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold shadow-md shadow-amber-400/25`).
 
@@ -75,7 +75,7 @@ The visual language moves away from dark, heavy interfaces into a **clean, dayli
 
 ### Inputs & Forms
 - **Field Styling:** Height `42px` to `48px`, background `#ffffff`, border `1px solid #e2e8f0`, border-radius `12px` (`rounded-xl`).
-- **Focus State:** 2px ring in Sportik Royal Blue (`focus:ring-2 focus:ring-blue-600 focus:border-transparent`).
+- **Focus State:** 2px ring in SportIQ Royal Blue (`focus:ring-2 focus:ring-blue-600 focus:border-transparent`).
 - **Labels:** Crisp uppercase tracking (`text-xs font-semibold uppercase tracking-wider text-slate-700`).
 
 ---

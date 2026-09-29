@@ -1,5 +1,5 @@
 /**
- * Sportik Platform - Common Frontend Helper Scripts
+ * SportIQ Platform - Common Frontend Helper Scripts
  * Clean, lightweight, zero external runtime dependencies.
  * Ready for backend API integration.
  */

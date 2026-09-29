@@ -1,7 +1,7 @@
-# Sportik — Frontend Architecture & Backend Developer Handoff Guide
+# SportIQ — Frontend Architecture & Backend Developer Handoff Guide
 
 ## 1. Project Overview
-**Sportik** is a clean, modern, high-performance web frontend for sports tournament management in India. It enables organizers to configure single/double knockout brackets, round-robin group stages with Cricket NRR / Goal Difference tables, automated conflict-free fixture scheduling, live team draws, and real-time public tournament sharing via URLs and QR codes.
+**SportIQ** is a clean, modern, high-performance web frontend for sports tournament management in India. It enables organizers to configure single/double knockout brackets, round-robin group stages with Cricket NRR / Goal Difference tables, automated conflict-free fixture scheduling, live team draws, and real-time public tournament sharing via URLs and QR codes.
 
 All legacy scraping residue (Next.js server-component chunks, HTTrack mirrors, redundant error pages) has been purged. The codebase is now standard **HTML5, Tailwind CSS, Google Fonts, and Vanilla JavaScript** with zero heavy runtime framework lock-in.
 
@@ -17,7 +17,7 @@ webdevcp/
 │   ├── js/
 │   │   └── main.js                  # Mobile nav toggle, toast notifications & clipboard helpers
 │   └── images/
-│       ├── logo.png                 # Sportik primary logo
+│       ├── logo.png                 # SportIQ primary logo
 │       ├── logo-small.png           # Compact logo icon
 │       ├── apple-touch-icon.png     # iOS touch icon
 │       ├── favicon-32x32.png        # Standard browser favicon
@@ -36,7 +36,7 @@ webdevcp/
 │   └── tournament-budget-calculator.html # Income vs expense calculator with break-even entry fee model
 ├── volleyball/
 │   └── index.html                   # Dedicated Event Microsite: St. Xavier's Youth Fr. Barco Memorial Cup (Throwball 6-a-side)
-├── index.html                       # Sportik main landing page & platform showcase
+├── index.html                       # SportIQ main landing page & platform showcase
 ├── about.html                       # Company mission, story & statistics
 ├── contact.html                     # Contact inquiry form & organizer support
 ├── features.html                    # Feature overview hub
@@ -49,9 +49,9 @@ webdevcp/
 
 ---
 
-## 3. Dedicated Event Microsite (`/volleyball`)
+## 3. Dedicated Event Microsite (`/throwball`)
 
-Per requirements, the route `volleyball/index.html` hosts a dedicated, self-contained tournament microsite:
+Per requirements, the route `throwball/index.html` hosts a dedicated, self-contained tournament microsite:
 - **Event**: *Rt. Rev. Fr. Thomas Barco, SJ Memorial Throwball Tournament for Girls (6-A-Side)*
 - **Presented by**: St. Xavier's Youth
 - **Date**: October 4, 2026
@@ -80,7 +80,7 @@ Per requirements, the route `volleyball/index.html` hosts a dedicated, self-cont
   ```
 - **Response**: `200 OK` `{ "success": true, "message": "Message received" }`
 
-### B. Throwball Tournament Team Registration (`volleyball/index.html`)
+### B. Throwball Tournament Team Registration (`throwball/index.html`)
 - **Trigger**: "Register Team" buttons open the client modal (`#regModal`).
 - **Form Element**: Form in modal ready for `POST /api/tournaments/barco-cup/register`.
 - **Payload Fields**:
